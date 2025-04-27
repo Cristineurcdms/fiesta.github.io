@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Contacts Management</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .menu {
+            margin-bottom: 30px;
+        }
+        .menu-item {
+            display: inline-block;
+            margin-right: 20px;
+        }
+        .menu-item a {
+            text-decoration: none;
+            color: blue;
+            font-weight: bold;
+            padding: 5px;
+            cursor: pointer;
+        }
+        .form-container {
+            display: none;
+            margin-top: 20px;
+            padding: 20px;
+            border: 1px solid #ccc;
+            background: #f9f9f9;
+            width: 400px;
+        }
+        input[type="text"] {
+            width: 90%;
+            padding: 5px;
+            margin-bottom: 10px;
+        }
+        input[type="submit"] {
+            padding: 5px 15px;
+            background-color: #f2f2f2;
+            border: 1px solid #ccc;
+            cursor: pointer;
+        }
+        input[type="submit"]:hover {
+            background-color: #ddd;
+        }
+    </style>
+</head>
+<body>
+
+<h3 class="menu">
+    <div class="menu-item"><a id="showAdd">Add Record</a></div>
+    <div class="menu-item"><a id="showUpdate">Update Record</a></div>
+    <div class="menu-item"><a id="showDelete">Delete Record</a></div>
+</h3>
+
+<!-- Add Form -->
+<div id="addForm" class="form-container">
+    <h4>Add Record</h4>
+    <form method="POST" action="contact.php">
+        Student Number: <input type="text" name="studno" required><br><br>
+        Name: <input type="text" name="name" required><br><br>
+        CP No.: <input type="text" name="cpno" value="63" required> (ex. 639201234567)<br><br>
+        <input type="submit" name="add" value="Save">
+    </form>
+</div>
+
+<!-- Update Form -->
+<div id="updateForm" class="form-container">
+    <h4>Update Record</h4>
+    <form method="POST" action="contact.php">
+        Student Number: <input type="text" name="studno_search" required>
+        <input type="submit" name="search_update" value="Search"><br><br>
+    </form>
+</div>
+
+<!-- Delete Form -->
+<div id="deleteForm" class="form-container">
+    <h4>Delete Record</h4>
+    <form method="POST" action="contact.php">
+        Student Number: <input type="text" name="studno_search" required>
+        <input type="submit" name="search_delete" value="Search"><br><br>
+    </form>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    const addForm = document.getElementById('addForm');
+    const updateForm = document.getElementById('updateForm');
+    const deleteForm = document.getElementById('deleteForm');
+
+    document.getElementById('showAdd').addEventListener('click', function() {
+        addForm.style.display = 'block';
+        updateForm.style.display = 'none';
+        deleteForm.style.display = 'none';
+    });
+
+    document.getElementById('showUpdate').addEventListener('click', function() {
+        addForm.style.display = 'none';
+        updateForm.style.display = 'block';
+        deleteForm.style.display = 'none';
+    });
+
+    document.getElementById('showDelete').addEventListener('click', function() {
+        addForm.style.display = 'none';
+        updateForm.style.display = 'none';
+        deleteForm.style.display = 'block';
+    });
+});
+</script>
+
+</body>
+</html>
